@@ -48,12 +48,12 @@ const ListItem = styled.li`
 `;
 
 interface ISLink {
-  isActive: boolean;
+  isactive: boolean | string;
 }
-const SLink = styled(Link)<ISLink>`
+const SLink = styled.span<ISLink>`
   text-decoration: none;
   font-weight: 600;
-  color: ${props => (props.isActive ? "black" : "#777")};
+  color: ${props => (props.isactive ? "black" : "#777")};
 `;
 
 const HeaderPresenter = ({ location }) => {
@@ -66,21 +66,21 @@ const HeaderPresenter = ({ location }) => {
         <Nav>
           <List>
             <ListItem>
-              <SLink isActive={location.pathname === "/"} to="/">
-                Home
-              </SLink>
+              <Link to="/">
+                <SLink isactive={location.pathname === "/"}>Home</SLink>
+              </Link>
             </ListItem>
             <ListItem>
-              <SLink isActive={location.pathname === "/blocks"} to="/blocks">
-                Blocks
-              </SLink>
+              <Link to="/blocks">
+                <SLink isactive={location.pathname === "/blocks"}>Blocks</SLink>
+              </Link>
             </ListItem>
             <ListItem>
-              <SLink
-                isActive={location.pathname === "/transactions"}
-                to="/transactions">
-                Transactions
-              </SLink>
+              <Link to="/transactions">
+                <SLink isactive={location.pathname === "/transactions"}>
+                  Transactions
+                </SLink>
+              </Link>
             </ListItem>
           </List>
         </Nav>

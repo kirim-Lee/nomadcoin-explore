@@ -5,6 +5,7 @@ import Header from "../Header";
 import Home from "../Home";
 import Blocks from "../Blocks";
 import Transactions from "../Transactions";
+import PropTypes from "prop-types";
 
 const Container = styled.div`
   background-color: #fafafa;
@@ -22,21 +23,28 @@ const Main = styled.div`
   }
 `;
 
-const AppPresenter = () => {
+const AppPresenter = ({ loading }) => {
   return (
     <BrowserRouter>
       <Container>
         <Header />
-        <Main>
-          <Switch>
-            <Route exact path={"/"} component={Home} />
-            <Route exact path={"/blocks"} component={Blocks} />
-            <Route exact path={"/transactions"} component={Transactions} />
-          </Switch>
-        </Main>
+        {(!loading && (
+          <Main>
+            <Switch>
+              <Route exact path={"/"} component={Home} />
+              <Route exact path={"/blocks"} component={Blocks} />
+              <Route exact path={"/transactions"} component={Transactions} />
+            </Switch>
+          </Main>
+        )) ||
+          null}
       </Container>
     </BrowserRouter>
   );
+};
+
+AppPresenter.propTypes = {
+  loading: PropTypes.bool.isRequired
 };
 
 export default AppPresenter;
