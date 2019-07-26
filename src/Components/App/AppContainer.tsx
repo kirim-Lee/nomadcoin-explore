@@ -5,8 +5,11 @@ import AppPresenter from "./AppPresenter";
 import typography from "../../typography";
 
 const BaseStyles = createGlobalStyle`
-${reset}
-${typography}
+  ${reset}
+  ${typography}
+  a {
+    text-decoration: none
+  }
 `;
 
 const AppContainer = () => {
