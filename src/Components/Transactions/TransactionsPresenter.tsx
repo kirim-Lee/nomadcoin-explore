@@ -1,5 +1,9 @@
 import React from "react";
 
-const TransactionsPresenter = () => <>Home</>;
+interface IProps {
+  transactions: any[];
+}
+
+const TransactionsPresenter = (props: IProps) => <>Transactions</>;
 
 export default TransactionsPresenter;

@@ -1,5 +1,10 @@
 import React from "react";
 
-const HomePresenter = () => <>Home</>;
+interface IProps {
+  blocks: any[];
+  transactions: any[];
+}
+
+const HomePresenter = (props: IProps) => <>{JSON.stringify(props)}Home</>;
 
 export default HomePresenter;

@@ -1,5 +1,9 @@
 import React from "react";
 
-const BlocksPresenter = () => <>Blocks</>;
+interface IProps {
+  blocks: any[];
+}
+
+const BlocksPresenter = (props: IProps) => <>Blocks</>;
 
 export default BlocksPresenter;
