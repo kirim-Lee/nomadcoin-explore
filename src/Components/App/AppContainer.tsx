@@ -15,9 +15,13 @@ const BaseStyles = createGlobalStyle`
     text-decoration: none
   }
 `;
-
+interface IState {
+  loading: boolean;
+  blocks: IResBlock[];
+  transactions: IResTransaction[];
+}
 const AppContainer = () => {
-  const [data, setData] = useState({
+  const [data, setData] = useState<IState>({
     loading: true,
     blocks: [],
     transactions: []
@@ -25,8 +29,18 @@ const AppContainer = () => {
 
   useEffect(() => {
     getData(setData);
-    connectToWs();
   }, []);
+
+  useEffect(() => {
+    connectToWs(addBlock);
+  });
+
+  const addBlock = (block: IResBlock[]) =>
+    setData({
+      ...data,
+      blocks: block.concat(data.blocks),
+      transactions: (block[0].data || []).concat(data.transactions)
+    });
 
   return (
     <>
@@ -39,17 +53,19 @@ const AppContainer = () => {
 const getData = async callback => {
   const res = await axios.get(`${API_URL}/blocks`);
   const blocks = (res.status === 200 && res.data) || [];
-  console.log(blocks);
   const transactions = flatten(blocks.reverse().map(block => block.data));
 
   return callback({ loading: false, blocks, transactions });
 };
 
-const connectToWs = () => {
+const connectToWs = callback => {
   const ws = new WebSocket(WS_URL);
   ws.addEventListener("message", message => {
     const parsed = parseMessage(message);
-    console.log(parsed);
+    if (parsed) {
+      console.log(parsed);
+      callback(parsed);
+    }
   });
 };
 
