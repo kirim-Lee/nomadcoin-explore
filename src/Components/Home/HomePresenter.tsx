@@ -22,6 +22,7 @@ const HomePresenter = ({ blocks, transactions }: IProps) => (
         <BlocksHeader />
         {blocks.map(block => (
           <BlocksRow
+            key={block.index}
             index={block.index}
             hash={block.hash}
             timestamp={makeDate(block.timestamp)}
@@ -36,6 +37,7 @@ const HomePresenter = ({ blocks, transactions }: IProps) => (
         <TxHeader />
         {transactions.map(tx => (
           <TxRow
+            key={tx.id}
             id={tx.id}
             insOuts={`${tx.txIns.length} / ${tx.txOuts.length}`}
             amount={sum(tx.txOuts.map(txOut => txOut.amount))}

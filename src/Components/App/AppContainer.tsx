@@ -4,7 +4,8 @@ import reset from "styled-reset";
 import AppPresenter from "./AppPresenter";
 import typography from "../../typography";
 import axios from "axios";
-import { API_URL } from "../../constant";
+import { API_URL, WS_URL } from "../../constant";
+import { parseMessage } from "../../utils";
 import flatten from "lodash.flatten";
 
 const BaseStyles = createGlobalStyle`
@@ -24,6 +25,7 @@ const AppContainer = () => {
 
   useEffect(() => {
     getData(setData);
+    connectToWs();
   }, []);
 
   return (
@@ -41,6 +43,14 @@ const getData = async callback => {
   const transactions = flatten(blocks.reverse().map(block => block.data));
 
   return callback({ loading: false, blocks, transactions });
+};
+
+const connectToWs = () => {
+  const ws = new WebSocket(WS_URL);
+  ws.addEventListener("message", message => {
+    const parsed = parseMessage(message);
+    console.log(parsed);
+  });
 };
 
 export default AppContainer;
