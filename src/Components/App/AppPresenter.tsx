@@ -2,7 +2,6 @@ import React, { Suspense } from "react";
 import styled from "styled-components";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Header from "../Header";
-import PropTypes from "prop-types";
 
 const Home = React.lazy(() => import("../Home"));
 const Blocks = React.lazy(() => import("../Blocks"));
@@ -69,10 +68,5 @@ const AppPresenter = ({ loading, transactions, blocks }: IProps) => {
   );
 };
 
-AppPresenter.propTypes = {
-  loading: PropTypes.bool.isRequired,
-  transactions: PropTypes.array,
-  blocks: PropTypes.array
-};
 
 export default AppPresenter;

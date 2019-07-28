@@ -1,7 +1,7 @@
 import React from "react";
 
 interface IProps {
-  transactions: any[];
+  transactions: IResTransaction[];
 }
 
 const TransactionsPresenter = (props: IProps) => <>Transactions</>;

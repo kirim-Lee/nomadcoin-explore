@@ -1,7 +1,7 @@
 import React from "react";
 
 interface IProps {
-  blocks: any[];
+  blocks: IResBlock[];
 }
 
 const BlocksPresenter = (props: IProps) => <>Blocks</>;

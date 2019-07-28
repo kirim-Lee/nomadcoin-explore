@@ -1,6 +1,12 @@
 import React from "react";
 import TransactionsPresenter from "./TransactionsPresenter";
 
-const TransactionsContainer = props => <TransactionsPresenter {...props} />;
+interface IProps {
+  transactions: IResTransaction[];
+}
+
+const TransactionsContainer = (props: IProps) => (
+  <TransactionsPresenter transactions={props.transactions} />
+);
 
 export default TransactionsContainer;
