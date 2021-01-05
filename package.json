@@ -12,7 +12,7 @@
     "@types/react-router-dom": "^4.3.4",
     "@types/styled-components": "^4.1.18",
     "@types/typography": "^0.16.2",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "lodash.flatten": "^4.4.0",
     "lodash.sum": "^4.0.2",
     "prop-types": "^15.7.2",
